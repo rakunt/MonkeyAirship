@@ -97,11 +97,18 @@ jobs:
           fi
           wget https://raw.githubusercontent.com/gurrenm3/BTD-Mod-Helper/${{ env.MOD_HELPER_BRANCH }}/BloonsTD6%20Mod%20Helper/btd6.targets
 
-      - name: Build
+
+      - name: Setup .NET
         uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: '6.0.x' # SDK Version to use; x will use the latest version of the 3.1 channel
+          dotnet-version: 6.0.x # net6 can still build older as well
+
+      - name: add Il2CppInterop
+        run: dotnet add  "MonkeyAirship/MonkeyAirship.csproj" package Il2CppInterop.Generator --version 1.4.6-ci.394
+          
+      - name: Build
         run: dotnet build -c Release -p:BloonsTD6="../${{ env.BLOONSTD6 }}" "${{ env.PROJECT_NAME }}/${{ env.PROJECT_NAME }}.csproj"
+
 
       - name: Upload Mod DLL
         uses: actions/upload-artifact@v3.1.3
