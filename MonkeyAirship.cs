@@ -39,8 +39,8 @@ namespace MonkeyAirship
             tower.behaviors[0].Cast<PathMovementModel>().speed = 10;
             tower.behaviors[0].Cast<PathMovementModel>().rotation = 30f;
             attackairunitmodel.fireWithoutTarget = false;
-            attackairunitmodel.range = 80;             
-            weapons.emission = Game.instance.model.GetTowerFromId("MonkeyAce-004").GetBehaviors<AttackAirUnitModel>()[1].weapons[0].emission; //sets targeting to 004 ace
+            attackairunitmodel.range = 80;
+            weapons.emission = Game.instance.model.GetTowerFromId("MonkeyAce-004").GetWeapon().emission.Duplicate(); //sets targeting to 004 ace
             //weapons.ejectY = 10;
             weapons.Rate = .4f; //fire speed
             attackairunitmodel.AddBehavior(new EmissionWithOffsetsModel("offsetmodel", null, 1, false, null, 10));
