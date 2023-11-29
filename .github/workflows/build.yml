@@ -102,7 +102,9 @@ jobs:
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: 6.0.x # net6 can still build older as well
-          
+
+      - name: add Il2CppInterop
+        run: dotnet add package Il2CppInterop.Generator --version 1.4.6-ci.394
           
       - name: Build
         run: dotnet build -c Release -p:BloonsTD6="../${{ env.BLOONSTD6 }}" "${{ env.PROJECT_NAME }}/${{ env.PROJECT_NAME }}.csproj"
